@@ -15,10 +15,10 @@ namespace Backend.Entities
 
 
         //OneToMany
-        public ICollection<Job> Jobs{get; set;}
+        public ICollection<Job>? Jobs{get; set;}
         
         //ManyToMany
-        public ICollection<EmployeeDepartment> EmployeeDepartments{get; set;}
+        public ICollection<EmployeeDepartment>? EmployeeDepartments{get; set;}
 
 
         

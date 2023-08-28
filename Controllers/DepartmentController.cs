@@ -14,6 +14,7 @@ namespace Backend.Controllers
     {
         public readonly IDepartmentRepository _departmentRepository;
         public DepartmentController(IDepartmentRepository departmentRepository){
+            
             _departmentRepository = departmentRepository;
         }
 
