@@ -32,13 +32,15 @@ namespace Backend.Controllers{
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEmployee([FromBody]Employee employee)
+        public IActionResult CreateEmployee([FromBody]EmployeeRequest employee)
         {
+            
+            
             return Ok(_employeeRepository.Add(employee));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] Employee e){
+        public IActionResult Update([FromBody] EmployeeRequest e){
             _employeeRepository.Update(e);
             return Ok(e);
 
@@ -55,21 +57,30 @@ namespace Backend.Controllers{
         /// <response code="404">Dipendente non trovato.</response>
         /// <response code="500">Errore interno del server.</response>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id){
+        public IActionResult Delete(int id){
             _employeeRepository.Remove(id);
             return Ok();
         }
         [HttpGet("totalSalary")]
-        public async Task<IActionResult> TotalSalary(){
-            long totalSalary=0;
-            await _context.Employees.ForEachAsync(item=>totalSalary+=item.Salary);
+        public IActionResult TotalSalary()
+        {
+            var totalSalary = _context.Employees.Include(x => x.EmployeeDepartments)
+                .GroupBy(e => 1)
+                .Select(g => g.Sum(e => e.Salary))
+                .FirstOrDefault();
+
             return Ok(totalSalary);
         }
 
+
         [HttpPost("{empId}/addJob/{jobId}")]
-        public async Task<IActionResult> addJob(int empId,int jobId){
+        public IActionResult addJob(int empId,int jobId){
             _employeeRepository.AddJob(empId,jobId);
             return Ok();
+        }
+        [HttpGet("{id}")]
+        public IActionResult getEmployee(int id){
+            return Ok(_employeeRepository.GetById(id));
         }
 
     }

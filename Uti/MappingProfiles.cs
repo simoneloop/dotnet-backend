@@ -14,8 +14,9 @@ namespace Backend.Uti
         public MappingProfiles(){
             CreateMap<Employee,EmployeeDto>();
             CreateMap<EmployeeDepartment,EmployeeDepartmentDto>();
-            CreateMap<Employee, EmployeeDto>()
-            .ForMember(dest => dest.EmployeeDepartmentsDto, opt => opt.MapFrom(src => src.EmployeeDepartments));
+            CreateMap<EmployeeRequest,Employee>();
+            //CreateMap<Employee, EmployeeDto>()
+            //.ForMember(dest => dest.EmployeeDepartmentsDto, opt => opt.MapFrom(src => src.EmployeeDepartments));
         }
     }
 }

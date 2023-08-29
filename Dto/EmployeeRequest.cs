@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Dto
 {
-    public class EmployeeDto
+    public class EmployeeRequest
     {
         public int Id{get; set;}
         public string Name {get; set;}
@@ -14,5 +14,6 @@ namespace Backend.Dto
 
         public long Salary{get; set;}
 
+        public List<int> DepartmentIds{get; set;}
     }
 }

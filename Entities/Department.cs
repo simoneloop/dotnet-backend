@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Backend.Entities
@@ -12,6 +13,7 @@ namespace Backend.Entities
         public string Description { get; set; }
 
         //ManyToMany
-        public ICollection<EmployeeDepartment> EmployeeDepartments { get; set;}
+        [JsonIgnore]
+        public ICollection<EmployeeDepartment>? EmployeeDepartments { get; set;}
     }
 }

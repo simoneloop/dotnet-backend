@@ -15,7 +15,6 @@ namespace Backend.Entities
         [JsonIgnore]
         public Employee Employee{get; set;}
 
-        [JsonIgnore]
         public Department Department{get; set;}
 
 

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(BackendDbContext))]
-    [Migration("20230828224222_initMig")]
+    [Migration("20230829121224_initMig")]
     partial class initMig
     {
         /// <inheritdoc />
@@ -111,13 +111,13 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Entities.EmployeeDepartment", b =>
                 {
-                    b.HasOne("Backend.Entities.Employee", "Employee")
+                    b.HasOne("Backend.Entities.Department", "Department")
                         .WithMany("EmployeeDepartments")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Entities.Department", "Department")
+                    b.HasOne("Backend.Entities.Employee", "Employee")
                         .WithMany("EmployeeDepartments")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)

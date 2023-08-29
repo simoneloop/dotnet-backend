@@ -15,20 +15,19 @@ namespace Backend.Repositories
             _context = context;
         }
         public EmployeeDepartment Add(int employeeId,int departmentId)
-        {
-            Employee eTmp=_context.Employees.Where(x => x.Id == employeeId).FirstOrDefault();
-            Department dTmp=_context.Departments.Where(x => x.Id==departmentId).FirstOrDefault();
-            if(eTmp!=null && dTmp!=null){
-                EmployeeDepartment edTmp=new();
-                edTmp.EmployeeId = employeeId;
-                edTmp.DepartmentId = departmentId;
-                edTmp.Employee=eTmp;
-                edTmp.Department=dTmp;
-                _context.EmployeeDepartments.Add(edTmp);
-                _context.SaveChanges(); 
-                return edTmp;
-            }
-            return null;
+        {   
+            var employee = _context.Employees.Where(e => e.Id == employeeId).FirstOrDefault();
+            var Department=_context.Departments.Where(d=>d.Id==departmentId).FirstOrDefault();
+              
+            EmployeeDepartment edTmp = new()
+            {
+                Employee = employee,
+                Department = Department
+            };
+            
+            _context.EmployeeDepartments.Add(edTmp);
+            _context.SaveChanges();
+            return edTmp;
             
             
         }

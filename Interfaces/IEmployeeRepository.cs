@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Dto;
 using Backend.Entities;
 
 namespace Backend.Interfaces
@@ -11,8 +12,8 @@ namespace Backend.Interfaces
         Employee GetById(int id);
         IEnumerable<Employee> GetAll();
 
-        Employee? Add(Employee employee);
-        void Update(Employee employee);
+        Employee? Add(EmployeeRequest employee);
+        void Update(EmployeeRequest employee);
 
         void Remove(int id);
 

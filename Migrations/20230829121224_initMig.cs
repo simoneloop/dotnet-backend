@@ -52,14 +52,14 @@ namespace Backend.Migrations
                 {
                     table.PrimaryKey("PK_EmployeeDepartments", x => new { x.EmployeeId, x.DepartmentId });
                     table.ForeignKey(
-                        name: "FK_EmployeeDepartments_Departments_EmployeeId",
-                        column: x => x.EmployeeId,
+                        name: "FK_EmployeeDepartments_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeDepartments_Employees_DepartmentId",
-                        column: x => x.DepartmentId,
+                        name: "FK_EmployeeDepartments_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);

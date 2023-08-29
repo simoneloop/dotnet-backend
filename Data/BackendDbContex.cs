@@ -14,17 +14,19 @@ namespace Backend.Data{
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //con le many to many
-        modelBuilder.Entity<EmployeeDepartment>()
-                    .HasKey(e => new {e.EmployeeId,e.DepartmentId});
-        modelBuilder.Entity<EmployeeDepartment>()
-                    .HasOne(e => e.Employee)
-                    .WithMany(e => e.EmployeeDepartments)
-                    .HasForeignKey(e => e.DepartmentId);
-        modelBuilder.Entity<EmployeeDepartment>()
-                    .HasOne(e => e.Department)
-                    .WithMany(e => e.EmployeeDepartments)
-                    .HasForeignKey(e=> e.EmployeeId);
+            // Configurazione per le relazioni many-to-many
+            modelBuilder.Entity<EmployeeDepartment>()
+                .HasKey(ed => new { ed.EmployeeId, ed.DepartmentId });
+
+            modelBuilder.Entity<EmployeeDepartment>()
+                .HasOne(e => e.Employee)
+                .WithMany(ed => ed.EmployeeDepartments)
+                .HasForeignKey(e => e.EmployeeId);
+
+            modelBuilder.Entity<EmployeeDepartment>()
+                .HasOne(e => e.Department)
+                .WithMany(ed => ed.EmployeeDepartments)
+                .HasForeignKey(d => d.DepartmentId);
     }
 }
 }

@@ -16,7 +16,7 @@ namespace Backend.Controllers
         public EmployeeDepartmentController(IEmployeeDepartmentRepository  employeeDepartmentRepository){
             _employeeDepartmentRepository = employeeDepartmentRepository;
         }
-        [HttpPost]
+        [HttpPost("{employeeId}/{departmentId}")]
         public IActionResult Add(int employeeId, int departmentId){
             return Ok(_employeeDepartmentRepository.Add(employeeId,departmentId));
         }
