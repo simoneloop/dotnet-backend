@@ -39,7 +39,7 @@ namespace Backend.Controllers{
             return Ok(_employeeRepository.Add(employee));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Update([FromBody] EmployeeRequest e){
             _employeeRepository.Update(e);
             return Ok(e);

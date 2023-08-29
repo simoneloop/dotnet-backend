@@ -79,10 +79,14 @@ namespace Backend.Repositories
                 eTMP.Salary=e.Salary;
             }
             
+            _context.Update(eTMP);
+             _context.SaveChanges();
+            
             _context.EmployeeDepartments.Where(x=>x.EmployeeId==e.Id).ToList().ForEach((dept)=>{
                 _context.EmployeeDepartments.Remove(dept);
                 
             });
+            _context.SaveChanges();
             e.DepartmentIds.ForEach(id=>{
                 EmployeeDepartment ed=new(){
                     Employee=eTMP,
